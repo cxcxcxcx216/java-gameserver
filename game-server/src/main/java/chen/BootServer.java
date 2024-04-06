@@ -12,11 +12,13 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class BootServer {
     private static final Logger logger = LoggerFactory.getLogger(BootServer.class);
     private int port;
@@ -59,6 +61,7 @@ public class BootServer {
 
 
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            logger.info("服务器启动成功！");
             channelFuture.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
