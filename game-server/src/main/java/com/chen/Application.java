@@ -19,18 +19,6 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        Set<Class<?>> classes = PackageScanner.scan(PkgConfig.actionPkg);
-
-        Iterator<Class<?>> iterator = classes.iterator();
-        while (iterator.hasNext()) {
-            Class<?> next = iterator.next();
-            Action annotation = next.getAnnotation(Action.class);
-            BaseAction action = (BaseAction)next.newInstance();
-            int msgId = annotation.msgId();
-            log.info("{}==={}",msgId,action.toString());
-
-        }
-
         Router router = new Router();
         router.init();
         BootServer bootServer = new BootServer();

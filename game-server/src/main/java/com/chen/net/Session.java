@@ -10,10 +10,8 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
-@NoArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
 public class Session {
 
     private ChannelHandlerContext ctx;
