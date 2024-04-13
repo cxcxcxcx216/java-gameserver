@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ProtoMsg protoMsg) throws Exception {
+        log.info(protoMsg.toString());
         Router.dispatcher(protoMsg);
     }
 

@@ -49,8 +49,8 @@ public class BootServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline()
-                                    .addLast(new MessageEncoder())
                                     .addLast(new MessageDecoder())
+                                    .addLast(new MessageEncoder())
                                     .addLast(new ServerHandler());
                         }
                     });
