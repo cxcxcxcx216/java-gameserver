@@ -2,6 +2,8 @@ package com.chen.action;
 
 
 import com.chen.annotation.Action;
+import com.chen.config.MsgCode;
+import com.chen.config.ProcessorCode;
 import com.chen.entity.Player;
 import com.chen.msg.ProtoMsg;
 import com.chen.net.Session;
@@ -12,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 @Slf4j
-@Action(msgId = 1001,processorId = 101,desc = "登录处理器")
+@Action(msgId = MsgCode.LoginAction,processorId = ProcessorCode.LoginProcessor,desc = "登录处理器")
 @AllArgsConstructor
 public class LoginAction extends BaseAction{
 

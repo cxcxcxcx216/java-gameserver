@@ -2,13 +2,15 @@ package com.chen.action;
 
 
 import com.chen.annotation.Action;
+import com.chen.config.MsgCode;
+import com.chen.config.ProcessorCode;
 import com.chen.msg.ProtoMsg;
 import com.chen.net.Session;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Action(msgId = 1002,processorId = 102,desc = "角色处理器")
+@Action(msgId = MsgCode.CreateRole,processorId = ProcessorCode.CreateRoleProcessor,desc = "角色处理器")
 @AllArgsConstructor
 public class CreateRoleAction extends BaseAction{
     @Override
