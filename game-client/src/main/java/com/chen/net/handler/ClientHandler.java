@@ -1,4 +1,4 @@
-package com.chen.net.handler.handler;
+package com.chen.net.handler;
 
 
 import com.chen.Application;
@@ -18,10 +18,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<ProtoMsg> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ProtoMsg protoMsg) throws Exception {
         log.info("服务器返回消息:{}",protoMsg);
-
-        ProtoMsg protoMsg1 = new ProtoMsg();
-        protoMsg1.setCode((short) 1001);
-        ctx.writeAndFlush(protoMsg);
     }
 
     @Override
@@ -29,6 +25,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<ProtoMsg> {
         Application.ctx = ctx;
         ProtoMsg protoMsg1 = new ProtoMsg();
         protoMsg1.setCode((short) 1001);
+        protoMsg1.setHead((short) 2);
         ctx.writeAndFlush(protoMsg1);
     }
 

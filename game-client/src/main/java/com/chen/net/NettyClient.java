@@ -1,8 +1,8 @@
 package com.chen.net;
 
-import com.chen.net.handler.handler.MessageDecoder;
-import com.chen.net.handler.handler.MessageEncoder;
-import com.chen.net.handler.handler.ClientHandler;
+import com.chen.net.handler.MessageDecoder;
+import com.chen.net.handler.MessageEncoder;
+import com.chen.net.handler.ClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -31,8 +31,9 @@ public class NettyClient {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline()
-//                                    .addLast(new MessageDecoder())
-//                                    .addLast(new MessageEncoder())
+//                                    .addLast(new IdleStateHandler(5, 0, 0, TimeUnit.SECONDS))
+                                    .addLast(new MessageDecoder())
+                                    .addLast(new MessageEncoder())
                                     .addLast(new ClientHandler());
                         }
                     });
