@@ -78,8 +78,8 @@ public class Router {
     }
 
     public static void dispatcher(ProtoMsg msg) throws InstantiationException, IllegalAccessException {
-        int code = msg.getCode();
-        Pair<Integer, Class<?>> classMap = actionMap.getOrDefault(code, null);
+        int msgId = msg.getMsgId();
+        Pair<Integer, Class<?>> classMap = actionMap.getOrDefault(msgId, null);
 
         Integer processorId = classMap.getFirst();
         Class<?> clazzAction = classMap.getSecond();

@@ -33,7 +33,7 @@ public class EchoServer {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline p = ch.pipeline();
-                            p.addLast(new StringDecoder(), new StringEncoder(), new EchoClientHandler());
+                            p.addLast(new StringDecoder(), new StringEncoder(), new EchoServerHandler());
                         }
                     });
 

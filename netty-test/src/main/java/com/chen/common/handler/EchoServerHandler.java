@@ -8,6 +8,7 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         // Echo back the received message to the client
+        System.out.println(msg);
         ctx.writeAndFlush(msg);
     }
 
