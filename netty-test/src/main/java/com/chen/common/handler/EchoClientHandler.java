@@ -1,33 +1,27 @@
 package com.chen.common.handler;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 
-public class EchoClientHandler extends ChannelInboundHandlerAdapter {
+public class EchoClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        // 当连接建立时发送消息给服务器
-        ByteBuf msg = ctx.alloc().buffer().writeBytes("Hello, Server!".getBytes());
-        ctx.writeAndFlush(msg);
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        // Send a message to the server when the connection is established
+        ctx.writeAndFlush("Hello, Server!");
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        // 接收并打印服务器回传的消息
-        ByteBuf in = (ByteBuf) msg;
-        try {
-            System.out.println("Received: " + in.toString());
-        } finally {
-            in.release();
-        }
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        // Print the received message from the server
+        System.out.println("Server response: " + msg);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        // 异常处理
+        // Close the connection when an exception is raised
         cause.printStackTrace();
         ctx.close();
     }
 }
+

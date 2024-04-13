@@ -1,32 +1,19 @@
 package com.chen.common.handler;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 
-public class EchoServerHandler extends ChannelInboundHandlerAdapter {
-
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ByteBuf in = (ByteBuf) msg;
-        try {
-            // 将接收到的消息写回客户端
-            ctx.write(in);
-        } finally {
-            // 释放接收到的消息
-            in.release();
-        }
-    }
+public class EchoServerHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) {
-        // 将缓冲区中的消息写入 SocketChannel
-        ctx.flush();
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        // Echo back the received message to the client
+        ctx.writeAndFlush(msg);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        // 异常处理
+        // Close the connection when an exception is raised
         cause.printStackTrace();
         ctx.close();
     }
