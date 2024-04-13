@@ -2,7 +2,6 @@ package com.chen.processor;
 
 import com.chen.action.BaseAction;
 import com.chen.annotation.Action;
-import com.chen.annotation.Processor;
 import com.chen.config.PkgConfig;
 import com.chen.entity.Pair;
 import com.chen.msg.ProtoMsg;
@@ -12,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -22,18 +20,18 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Router {
 
     private static final Logger logger = LoggerFactory.getLogger(Router.class);
-    private static final Map<Integer,Processer> processorMap = new ConcurrentHashMap<>();
+    private static final Map<Integer, Processor> processorMap = new ConcurrentHashMap<>();
 
     private static final Map<Integer, Pair<Integer,Class<?>>> actionMap = new ConcurrentHashMap<>();
 
     /**
      * 注册消息处理器
      * @param processorId
-     * @param processer
+     * @param processor
      */
-    public void register(int processorId,Processer processer){
-        logger.info("注册处理器{}==={}",processorId,processer);
-        processorMap.put(processorId,processer);
+    public void register(int processorId, Processor processor){
+        logger.info("注册处理器{}==={}",processorId, processor);
+        processorMap.put(processorId, processor);
     }
 
 
@@ -53,8 +51,8 @@ public class Router {
     /**
      * 初始化消息处理器
      */
-    public void init() throws Exception {
-        Set<Class<?>> actions = PackageScanner.scan(PkgConfig.actionPkg);
+    public void init() {
+        Set<Class<?>> actions = PackageScanner.scan(PkgConfig.actionPkg,Action.class);
         Iterator<Class<?>> iterator = actions.iterator();
         while (iterator.hasNext()) {
             Class<?> clazz = iterator.next();
@@ -66,9 +64,16 @@ public class Router {
         }
 
 
-        //注册对应的处理器
-        register(101,new LoginProcessor());
-
+        Set<Class<?>> processors = PackageScanner.scan(PkgConfig.actionPkg, com.chen.annotation.Processor.class);
+        processors.forEach(clazz -> {
+            com.chen.annotation.Processor annotation = clazz.getAnnotation(com.chen.annotation.Processor.class);
+            int processorId = annotation.processorId();
+            try {
+                register(processorId, (Processor) clazz.newInstance());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 
@@ -80,8 +85,8 @@ public class Router {
         Class<?> clazzAction = classMap.getSecond();
         BaseAction action = (BaseAction)clazzAction.newInstance();
 
-        Processer processer = processorMap.get(processorId);
-        processer.addTask(action);
+        Processor processor = processorMap.get(processorId);
+        processor.addTask(action);
 
     }
 }

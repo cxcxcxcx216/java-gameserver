@@ -1,6 +1,6 @@
 package com.chen.processor;
 
-public interface Processer {
+public interface Processor {
 
     public void addTask(Runnable runnable);
 
