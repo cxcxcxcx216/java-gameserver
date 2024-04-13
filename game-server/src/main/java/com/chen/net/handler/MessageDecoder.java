@@ -6,13 +6,16 @@ import com.chen.utils.BitUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 public class MessageDecoder extends ByteToMessageDecoder {
 
     @Override
-    protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf msg, List<Object> out) throws Exception {
+    protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf msg, List<Object> out) {
+        log.info(msg.toString());
         final int readableBytes = msg.readableBytes();
         if (readableBytes < ProtocolConstants.BASE_LENGTH) {
             return;

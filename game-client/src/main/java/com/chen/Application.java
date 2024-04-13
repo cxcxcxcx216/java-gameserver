@@ -27,7 +27,10 @@ public class Application {
             }
         }).start();
         Thread.sleep(1000*3);
-
+        while (true){
+            Thread.sleep(1000);
+            ctx.writeAndFlush("客户端消息！");
+        }
 
 
     }

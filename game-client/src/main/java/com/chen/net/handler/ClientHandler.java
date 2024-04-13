@@ -3,6 +3,7 @@ package com.chen.net.handler;
 
 import com.chen.Application;
 import com.chen.msg.ProtoMsg;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -11,22 +12,20 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-public class ClientHandler extends SimpleChannelInboundHandler<ProtoMsg> {
+public class ClientHandler extends SimpleChannelInboundHandler<String> {
 
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ProtoMsg protoMsg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, String protoMsg) throws Exception {
         log.info("服务器返回消息:{}",protoMsg);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Application.ctx = ctx;
-        ProtoMsg protoMsg1 = new ProtoMsg();
-        protoMsg1.setCode((short) 1001);
-        protoMsg1.setHead((short) 2);
-        ctx.writeAndFlush(protoMsg1);
+        ctx.writeAndFlush("1231231");
+        log.info("客户端向服务器发送消息");
     }
 
     @Override

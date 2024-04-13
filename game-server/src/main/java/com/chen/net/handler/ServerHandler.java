@@ -16,11 +16,12 @@ import java.util.Map;
 
 
 @Slf4j
-public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
+public class ServerHandler extends SimpleChannelInboundHandler<String> {
+
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ProtoMsg protoMsg) throws Exception {
-        log.info(protoMsg.toString());
-        Router.dispatcher(protoMsg);
+    protected void channelRead0(ChannelHandlerContext ctx, String protoMsg) throws Exception {
+        log.info(protoMsg);
+//        Router.dispatcher(protoMsg);
     }
 
     @Override
@@ -31,6 +32,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
         player.setSession(session);
         session.setPlayer(player);
         PlayerManager.getInstance().addPlayer(ctx,player);
+        ctx.writeAndFlush("服务器链接成功!");
         log.info("用户数据创建成功->{}==IP:{}",player,ctx.channel().remoteAddress().toString());
     }
 
