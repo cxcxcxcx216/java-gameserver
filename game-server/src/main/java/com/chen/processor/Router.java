@@ -69,15 +69,6 @@ public class Router {
         //注册对应的处理器
         register(101,new LoginProcessor());
 
-//        Set<Class<?>> processors = PackageScanner.scan(PkgConfig.actionPkg);
-//        Iterator<Class<?>> processorClazzs = processors.iterator();
-//        while (processorClazzs.hasNext()) {
-//            Class<?> clazz = processorClazzs.next();
-//            Processor processor = clazz.getAnnotation(Processor.class);
-//            int processorId = processor.processorId();
-//            //注册对应的处理器
-//            register(processorId,new LoginProcessor());
-//        }
 
     }
 
