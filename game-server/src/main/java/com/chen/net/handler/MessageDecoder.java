@@ -1,4 +1,4 @@
-package com.chen.handler;
+package com.chen.net.handler;
 
 import com.chen.config.ProtocolConstants;
 import com.chen.msg.ProtoMsg;

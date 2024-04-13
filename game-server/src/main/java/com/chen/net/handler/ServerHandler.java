@@ -1,7 +1,7 @@
-package com.chen.handler;
+package com.chen.net.handler;
 
 import com.chen.entity.Player;
-import com.chen.mannger.PlayerMannger;
+import com.chen.mannger.PlayerManager;
 import com.chen.msg.ProtoMsg;
 import com.chen.net.Session;
 import com.chen.processor.Router;
@@ -24,13 +24,14 @@ public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
         Session session = new Session();
         session.setCtx(ctx);
         player.setSession(session);
-        PlayerMannger.addPlayer(ctx,player);
+        session.setPlayer(player);
+        PlayerManager.getInstance().addPlayer(ctx,player);
         log.info("用户数据创建成功=={}",player);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        PlayerMannger.addPlayerOffLineMap(ctx);
+        PlayerManager.getInstance().addPlayerOffLineMap(ctx);
 
     }
 

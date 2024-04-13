@@ -1,5 +1,6 @@
 package com.chen.net;
 
+import com.chen.entity.Player;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,8 @@ import java.util.Map;
 public class Session {
 
     private ChannelHandlerContext ctx;
+
+    private Player player;
 
     private Map<Object,Object> values = new HashMap<>();
 }
