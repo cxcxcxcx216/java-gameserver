@@ -10,6 +10,7 @@
         <module name="netty-test" />
         <module name="game-server" />
         <module name="game-client" />
+        <module name="game-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

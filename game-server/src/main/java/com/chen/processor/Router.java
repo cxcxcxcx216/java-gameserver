@@ -6,6 +6,7 @@ import com.chen.config.PkgConfig;
 import com.chen.entity.Pair;
 import com.chen.msg.ProtoMsg;
 
+import com.chen.net.Session;
 import com.chen.utils.PackageScanner;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -77,14 +78,14 @@ public class Router {
 
     }
 
-    public static void dispatcher(ProtoMsg msg) throws InstantiationException, IllegalAccessException {
+    public static void dispatcher(ProtoMsg msg, Session session) throws InstantiationException, IllegalAccessException {
         int msgId = msg.getMsgId();
         Pair<Integer, Class<?>> classMap = actionMap.getOrDefault(msgId, null);
-
         Integer processorId = classMap.getFirst();
         Class<?> clazzAction = classMap.getSecond();
         BaseAction action = (BaseAction)clazzAction.newInstance();
-
+        action.setMsg(msg);
+        action.setSession(session);
         Processor processor = processorMap.get(processorId);
         processor.addTask(action);
 

@@ -5,9 +5,12 @@ import com.chen.net.NettyClient;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
 
 @Slf4j
-public class Application {
+public class ApplicationClient {
 
     public static ChannelHandlerContext ctx;
 
@@ -16,7 +19,9 @@ public class Application {
 
         String host = "localhost";
         int port = 9001;
+
         new Thread(new Runnable() {
+
             @Override
             public void run() {
                 try {
@@ -27,11 +32,19 @@ public class Application {
             }
         }).start();
         Thread.sleep(1000*3);
-        while (true){
-            Thread.sleep(1000);
-            ctx.writeAndFlush("客户端消息！");
-        }
 
+        Scanner scanner = new Scanner(System.in);
+        while (true){
+            ProtoMsg protoMsg = new ProtoMsg();
+            protoMsg.setMsgId((short) 1002);
+
+            String message = scanner.nextLine();
+
+            byte[] bytes = message.getBytes(StandardCharsets.UTF_8);;
+            protoMsg.setData(bytes);
+            ctx.writeAndFlush(protoMsg);
+            log.info("客户端向服务器发送消息->{}",bytes.length);
+        }
 
     }
 }

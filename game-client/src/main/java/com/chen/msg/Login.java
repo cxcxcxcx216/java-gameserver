@@ -1,5 +1,7 @@
 package com.chen.msg;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable {
 
 }

@@ -3,6 +3,7 @@ package com.chen;
 import com.chen.net.handler.MessageDecoder;
 import com.chen.net.handler.MessageEncoder;
 import com.chen.net.handler.ServerHandler;
+import com.chen.processor.Router;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -20,6 +21,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class BootServer {
     private static final Logger logger = LoggerFactory.getLogger(BootServer.class);
+
+
+    private Router router = new Router();
     private int port;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
@@ -52,9 +56,9 @@ public class BootServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline()
-//                                    .addLast(new MessageDecoder())
-//                                    .addLast(new MessageEncoder())
-                                    .addLast(new ServerHandler());
+                                    .addLast(new MessageDecoder())
+                                    .addLast(new MessageEncoder())
+                                    .addLast(new ServerHandler(router));
                         }
                     });
 

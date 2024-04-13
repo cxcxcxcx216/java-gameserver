@@ -2,27 +2,19 @@ package com.chen.msg;
 
 
 public class BaseMsg {
-    private short head;
-    private short code;
+    private short msgId;
     private byte[] data;
 
     public BaseMsg() {
     }
 
-    public short getHead() {
-        return this.head;
+
+    public short getMsgId() {
+        return msgId;
     }
 
-    public void setHead(short head) {
-        this.head = head;
-    }
-
-    public int getCode() {
-        return this.code;
-    }
-
-    public void setCode(short code) {
-        this.code = code;
+    public void setMsgId(short msgId) {
+        this.msgId = msgId;
     }
 
     public byte[] getData() {

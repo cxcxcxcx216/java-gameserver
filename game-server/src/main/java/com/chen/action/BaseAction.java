@@ -1,6 +1,7 @@
 package com.chen.action;
 
 import com.chen.msg.ProtoMsg;
+import com.chen.net.Session;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,16 +11,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class BaseAction<T> implements Runnable{
+public abstract class BaseAction implements Runnable{
 
-    private T t;
+    private Session session;
     private ProtoMsg msg;
-    public void doAction(ProtoMsg msg, T t){
+    public void doAction(ProtoMsg msg, Session session){
 
     }
 
     @Override
     public void run() {
-        doAction(msg,t);
+        doAction(msg,session);
     }
 }

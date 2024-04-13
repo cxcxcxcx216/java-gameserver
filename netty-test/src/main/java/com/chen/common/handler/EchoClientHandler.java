@@ -2,7 +2,9 @@ package com.chen.common.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class EchoClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
@@ -14,7 +16,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         // Print the received message from the server
-        System.out.println("Server response: " + msg);
+        log.info("Server response: " + msg);
     }
 
     @Override

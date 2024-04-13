@@ -12,6 +12,7 @@
         <module>game-server</module>
         <module>game-client</module>
         <module>netty-test</module>
+        <module>game-common</module>
     </modules>
 
     <properties>

@@ -2,6 +2,7 @@ package com.chen.net.handler;
 
 import com.chen.entity.Player;
 import com.chen.mannger.PlayerManager;
+import com.chen.mannger.SessionManager;
 import com.chen.msg.ProtoMsg;
 import com.chen.net.Session;
 import com.chen.processor.Router;
@@ -9,6 +10,8 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Iterator;
@@ -16,12 +19,16 @@ import java.util.Map;
 
 
 @Slf4j
-public class ServerHandler extends SimpleChannelInboundHandler<String> {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
+
+
+    private Router router;
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String protoMsg) throws Exception {
-        log.info(protoMsg);
-//        Router.dispatcher(protoMsg);
+    protected void channelRead0(ChannelHandlerContext ctx, ProtoMsg protoMsg) throws Exception {
+        router.dispatcher(protoMsg, SessionManager.getInstance().getSession(ctx));
     }
 
     @Override
@@ -32,7 +39,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
         player.setSession(session);
         session.setPlayer(player);
         PlayerManager.getInstance().addPlayer(ctx,player);
-        ctx.writeAndFlush("服务器链接成功!");
+        SessionManager.getInstance().addSession(ctx,session);
         log.info("用户数据创建成功->{}==IP:{}",player,ctx.channel().remoteAddress().toString());
     }
 

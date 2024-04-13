@@ -4,16 +4,14 @@ package com.chen.entity;
 import com.chen.annotation.Processor;
 import com.chen.msg.ProtoMsg;
 import com.chen.net.Session;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Player {
 
     private int pid;
