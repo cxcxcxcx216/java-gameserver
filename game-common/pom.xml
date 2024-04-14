@@ -77,11 +77,11 @@
 
 
 
-<!--        <dependency>-->
-<!--            <groupId>com.google.protobuf</groupId>-->
-<!--            <artifactId>protobuf-java-util</artifactId>-->
-<!--            <version>4.26.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>3.20.3</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>

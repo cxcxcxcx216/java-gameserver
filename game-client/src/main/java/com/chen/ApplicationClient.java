@@ -31,7 +31,7 @@ public class ApplicationClient {
         }).start();
 
 
-        Thread.sleep(1000*3);
+        Thread.sleep(1000*5);
         while (true){
 
             Thread.sleep(1);
