@@ -24,7 +24,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<ProtoMsg> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-//        ApplicationClient.ctx = ctx;
+        ApplicationClient.ctx = ctx;
 //        ProtoMsg protoMsg = new ProtoMsg();
 //        protoMsg.setMsgId(MsgCode.LoginAction);
 //        String message = "hello, server";

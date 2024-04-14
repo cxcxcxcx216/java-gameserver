@@ -31,17 +31,21 @@ public class ApplicationClient {
         }).start();
 
 
-//        Thread.sleep(1000);
+        Thread.sleep(1000*3);
+        while (true){
 
-//        ProtoMsg.Person.Builder person = ProtoMsg.Person.newBuilder();
-//        ProtoMsg.Person person1 = person.setId(101).addEmail("123123").setName("chenxing").build();
-//        com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
-//
-//
-//        protoMsg.setMsgId(MsgCode.CreateRole);
-//        protoMsg.setData(person1.toByteArray());
-//
-//        ctx.writeAndFlush(protoMsg);
+            Thread.sleep(1000);
+            com.chen.proto.ProtoMsg.Person.Builder person = com.chen.proto.ProtoMsg.Person.newBuilder();
+            com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("123123").setName("chenxing").build();
+            com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
+
+
+            protoMsg.setMsgId(MsgCode.CreateRole);
+            protoMsg.setData(person1.toByteArray());
+
+            ctx.writeAndFlush(protoMsg);
+        }
+
 
 
     }
