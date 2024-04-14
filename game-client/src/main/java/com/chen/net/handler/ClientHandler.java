@@ -35,7 +35,8 @@ public class ClientHandler extends SimpleChannelInboundHandler<ProtoMsg> {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-
+        log.info("服务器断开链接");
+        ctx.close();
     }
 
     @Override
