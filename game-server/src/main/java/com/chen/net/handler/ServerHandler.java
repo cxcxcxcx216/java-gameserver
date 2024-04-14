@@ -3,7 +3,7 @@ package com.chen.net.handler;
 import com.chen.entity.Player;
 import com.chen.mannger.PlayerManager;
 import com.chen.mannger.SessionManager;
-import com.chen.net.msg.ProtoMsg;
+import com.chen.net.msg.ReqProtoMsg;
 import com.chen.net.Session;
 import com.chen.processor.Router;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,14 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
+public class ServerHandler extends SimpleChannelInboundHandler<ReqProtoMsg> {
 
 
     private Router router;
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ProtoMsg protoMsg) throws Exception {
-        router.dispatcher(protoMsg, SessionManager.getInstance().getSession(ctx));
+    protected void channelRead0(ChannelHandlerContext ctx, ReqProtoMsg reqProtoMsg) throws Exception {
+        router.dispatcher(reqProtoMsg, SessionManager.getInstance().getSession(ctx));
     }
 
     @Override

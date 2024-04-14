@@ -8,6 +8,6 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ProtoMsg extends BaseMsg{
+public class ReqProtoMsg extends BaseMsg{
 
 }

@@ -1,6 +1,6 @@
 package com.chen.net.handler;
 
-import com.chen.net.msg.ProtoMsg;
+import com.chen.net.msg.ReqProtoMsg;
 import com.chen.utils.BitUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -45,10 +45,10 @@ public class MessageDecoder extends ByteToMessageDecoder {
         // 读取消息内容
         byte[] body = new byte[dataLength];
         msg.readBytes(body, 0, body.length);
-        ProtoMsg protoMsg = new ProtoMsg();
-        protoMsg.setMsgId(messageId);
-        protoMsg.setData(body);
+        ReqProtoMsg reqProtoMsg = new ReqProtoMsg();
+        reqProtoMsg.setMsgId(messageId);
+        reqProtoMsg.setData(body);
         // 将消息内容解码成字符串，并添加到输出列表中
-        out.add(protoMsg);
+        out.add(reqProtoMsg);
     }
 }

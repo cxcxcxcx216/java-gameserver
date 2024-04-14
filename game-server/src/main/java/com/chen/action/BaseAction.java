@@ -1,7 +1,8 @@
 package com.chen.action;
 
-import com.chen.net.msg.ProtoMsg;
+import com.chen.net.msg.ReqProtoMsg;
 import com.chen.net.Session;
+import com.chen.net.msg.ResProtoMsg;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,16 +16,17 @@ import lombok.Setter;
 public abstract class BaseAction implements Runnable{
 
     private Session session;
-    private ProtoMsg msg;
-    public void doAction(ProtoMsg msg, Session session) throws InvalidProtocolBufferException {
-
-    }
+    private ReqProtoMsg msg;
+    public abstract ResProtoMsg doAction(ReqProtoMsg msg, Session session) throws Exception;
 
     @Override
     public void run() {
         try {
-            doAction(msg,session);
-        } catch (InvalidProtocolBufferException e) {
+            ResProtoMsg resProtoMsg = doAction(msg, session);
+            if (resProtoMsg != null){
+                session.getCtx().writeAndFlush(msg);
+            }
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

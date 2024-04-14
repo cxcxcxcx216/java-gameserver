@@ -4,7 +4,7 @@ import com.chen.action.BaseAction;
 import com.chen.annotation.Action;
 import com.chen.config.PkgConfig;
 import com.chen.entity.Pair;
-import com.chen.net.msg.ProtoMsg;
+import com.chen.net.msg.ReqProtoMsg;
 
 import com.chen.net.Session;
 import com.chen.utils.PackageScanner;
@@ -78,7 +78,7 @@ public class Router {
 
     }
 
-    public static void dispatcher(ProtoMsg msg, Session session) throws InstantiationException, IllegalAccessException {
+    public static void dispatcher(ReqProtoMsg msg, Session session) throws InstantiationException, IllegalAccessException {
         int msgId = msg.getMsgId();
         Pair<Integer, Class<?>> classMap = actionMap.getOrDefault(msgId, null);
         Integer processorId = classMap.getFirst();

@@ -1,7 +1,7 @@
 package com.chen.entity;
 
 
-import com.chen.net.msg.ProtoMsg;
+import com.chen.net.msg.ReqProtoMsg;
 import com.chen.net.Session;
 import lombok.*;
 
@@ -18,8 +18,8 @@ public class Player {
     private Session session;
 
 
-    public void sendMsg(ProtoMsg protoMsg){
-        session.getCtx().writeAndFlush(protoMsg);
+    public void sendMsg(ReqProtoMsg reqProtoMsg){
+        session.getCtx().writeAndFlush(reqProtoMsg);
     }
 
 }
