@@ -1,8 +1,7 @@
 package com.chen.entity;
 
 
-import com.chen.annotation.Processor;
-import com.chen.msg.ProtoMsg;
+import com.chen.net.msg.ProtoMsg;
 import com.chen.net.Session;
 import lombok.*;
 

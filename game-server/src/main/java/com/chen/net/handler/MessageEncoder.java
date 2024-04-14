@@ -1,6 +1,6 @@
 package com.chen.net.handler;
 
-import com.chen.msg.ProtoMsg;
+import com.chen.net.msg.ProtoMsg;
 import com.chen.utils.BitUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

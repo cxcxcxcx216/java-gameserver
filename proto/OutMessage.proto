@@ -1,19 +1,12 @@
 syntax = "proto3";
 
 
-
-option java_multiple_files = true;
-
+option java_multiple_files = false;
 option java_package = "com.chen.proto";
-
 option java_outer_classname = "ProtoMsg";
 
-
 message Person {
-  int32 id = 1;
-  string name = 2;
-}
-
-message AddressBook {
-  repeated Person people = 1;
+  string name = 1;
+  int32 id = 2;
+  repeated string email = 3;
 }

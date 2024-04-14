@@ -4,14 +4,10 @@ package com.chen.action;
 import com.chen.annotation.Action;
 import com.chen.config.MsgCode;
 import com.chen.config.ProcessorCode;
-import com.chen.entity.Player;
-import com.chen.msg.ProtoMsg;
+import com.chen.net.msg.ProtoMsg;
 import com.chen.net.Session;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 @Slf4j
 @Action(msgId = MsgCode.LoginAction,processorId = ProcessorCode.LoginProcessor,desc = "登录处理器")

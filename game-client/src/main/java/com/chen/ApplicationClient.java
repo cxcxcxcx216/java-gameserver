@@ -1,12 +1,10 @@
 package com.chen;
 
-import com.chen.msg.ProtoMsg;
+import com.chen.config.MsgCode;
 import com.chen.net.NettyClient;
+import com.chen.proto.ProtoMsg;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 
 @Slf4j
@@ -31,20 +29,21 @@ public class ApplicationClient {
                 }
             }
         }).start();
-        Thread.sleep(1000*3);
 
-        Scanner scanner = new Scanner(System.in);
-        while (true){
-            ProtoMsg protoMsg = new ProtoMsg();
-            protoMsg.setMsgId((short) 1002);
 
-            String message = scanner.nextLine();
+//        Thread.sleep(1000);
 
-            byte[] bytes = message.getBytes(StandardCharsets.UTF_8);;
-            protoMsg.setData(bytes);
-            ctx.writeAndFlush(protoMsg);
-            log.info("客户端向服务器发送消息->{}",bytes.length);
-        }
+//        ProtoMsg.Person.Builder person = ProtoMsg.Person.newBuilder();
+//        ProtoMsg.Person person1 = person.setId(101).addEmail("123123").setName("chenxing").build();
+//        com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
+//
+//
+//        protoMsg.setMsgId(MsgCode.CreateRole);
+//        protoMsg.setData(person1.toByteArray());
+//
+//        ctx.writeAndFlush(protoMsg);
+
 
     }
+
 }

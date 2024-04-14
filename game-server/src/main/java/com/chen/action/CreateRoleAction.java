@@ -4,8 +4,9 @@ package com.chen.action;
 import com.chen.annotation.Action;
 import com.chen.config.MsgCode;
 import com.chen.config.ProcessorCode;
-import com.chen.msg.ProtoMsg;
+import com.chen.net.msg.ProtoMsg;
 import com.chen.net.Session;
+import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,14 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 public class CreateRoleAction extends BaseAction{
     @Override
-    public void doAction(ProtoMsg msg, Session session) {
-        log.info("创建角色");
-        ProtoMsg protoMsg = new ProtoMsg();
-        protoMsg.setMsgId((short) 1001);
+    public void doAction(ProtoMsg msg, Session session) throws InvalidProtocolBufferException {
         byte[] data = msg.getData();
-        String str = new String(data);
-        log.info("客户端发送的消息：{}",str);
-        protoMsg.setData("角色创建成功".getBytes());
-        session.getCtx().writeAndFlush(protoMsg);
+        com.chen.proto.ProtoMsg.Person person = com.chen.proto.ProtoMsg.Person.parseFrom(data);
+        log.info("person-{}-{}",person.getId(),person.getName());
     }
 }

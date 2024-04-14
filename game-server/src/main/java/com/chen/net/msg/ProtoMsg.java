@@ -1,4 +1,4 @@
-package com.chen.msg;
+package com.chen.net.msg;
 
 
 import lombok.Getter;
@@ -9,6 +9,5 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ProtoMsg extends BaseMsg{
-
 
 }

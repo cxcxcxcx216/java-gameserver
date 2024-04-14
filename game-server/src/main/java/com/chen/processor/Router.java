@@ -4,7 +4,7 @@ import com.chen.action.BaseAction;
 import com.chen.annotation.Action;
 import com.chen.config.PkgConfig;
 import com.chen.entity.Pair;
-import com.chen.msg.ProtoMsg;
+import com.chen.net.msg.ProtoMsg;
 
 import com.chen.net.Session;
 import com.chen.utils.PackageScanner;

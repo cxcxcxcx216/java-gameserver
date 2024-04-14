@@ -7,11 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="netty-test" />
         <module name="game-server" />
+        <module name="rpc-server" />
+        <module name="netty-test" />
         <module name="game-client" />
         <module name="game-gateway" />
         <module name="game-common" />
+        <module name="rpc-framework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

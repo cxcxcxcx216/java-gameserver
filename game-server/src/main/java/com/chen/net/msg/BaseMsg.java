@@ -1,4 +1,4 @@
-package com.chen.msg;
+package com.chen.net.msg;
 
 
 public class BaseMsg {
