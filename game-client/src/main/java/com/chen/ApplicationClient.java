@@ -34,9 +34,9 @@ public class ApplicationClient {
         Thread.sleep(1000*3);
         while (true){
 
-            Thread.sleep(1000);
+            Thread.sleep(1);
             com.chen.proto.ProtoMsg.Person.Builder person = com.chen.proto.ProtoMsg.Person.newBuilder();
-            com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("123123").setName("chenxing").build();
+            com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("asdasdasdasdasdasdasdasdasd").setName("chenxing").build();
             com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
 
 
@@ -44,9 +44,10 @@ public class ApplicationClient {
             protoMsg.setData(person1.toByteArray());
 
             ctx.writeAndFlush(protoMsg);
+
+            log.info("向服务器发送消息：{}",protoMsg.getData().length);
+            break;
         }
-
-
 
     }
 
