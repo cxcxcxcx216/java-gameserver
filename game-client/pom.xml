@@ -71,5 +71,12 @@
             <artifactId>game-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.18.0</version> <!-- 使用最新版本 -->
+        </dependency>
+
     </dependencies>
 </project>
