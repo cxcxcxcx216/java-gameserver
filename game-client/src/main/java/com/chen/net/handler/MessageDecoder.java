@@ -15,10 +15,11 @@ public class MessageDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf msg, List<Object> out) {
 
-        if (msg.readableBytes() < 2) {
+        final int readableBytes = msg.readableBytes();
+        if (readableBytes < 2) {
             return;
         }
-        // 标记当前读取位置
+
         msg.markReaderIndex();
 
         //解析消息体长度

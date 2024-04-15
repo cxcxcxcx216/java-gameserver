@@ -24,6 +24,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<ReqProtoMsg> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ReqProtoMsg reqProtoMsg) throws Exception {
+
+        log.info("收到客户端消息：{}",reqProtoMsg);
         router.dispatcher(reqProtoMsg, SessionManager.getInstance().getSession(ctx));
     }
 
