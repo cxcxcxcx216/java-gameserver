@@ -25,17 +25,12 @@ public class MessageDecoder extends ByteToMessageDecoder {
         //解析消息体长度
         int dataLength = BitUtils.SwapInt16(msg.readShort());//消息体长度
 
-        // 标记当前读取位置
-        msg.markReaderIndex();
         //解析消息号
         if (!msg.isReadable(2)) {//数据不够长，重置位置
             msg.resetReaderIndex();
             return;
         }
         short messageId = BitUtils.SwapInt16(msg.readShort());//消息Id
-
-        // 标记当前读取位置
-        msg.markReaderIndex();
 
         // 检查是否有足够的字节可读取
         if (!msg.isReadable(dataLength)) {//数据不够长，重置位置
