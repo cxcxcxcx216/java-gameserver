@@ -12,6 +12,7 @@
         <module name="netty-test" />
         <module name="game-client" />
         <module name="game-gateway" />
+        <module name="java-akka" />
         <module name="game-common" />
         <module name="rpc-framework" />
       </profile>

@@ -35,17 +35,17 @@ public class ApplicationClient {
         while (true){
 
             Thread.sleep(1);
-            com.chen.proto.ProtoMsg.Person.Builder person = com.chen.proto.ProtoMsg.Person.newBuilder();
-            com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("asdasdasdasdasdasdasdasdasd").setName("chenxing").build();
-            com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
+//            com.chen.proto.ProtoMsg.Person.Builder person = com.chen.proto.ProtoMsg.Person.newBuilder();
+//            com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("asdasdasdasdasdasdasdasdasd").setName("chenxing").build();
+//            com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
+//
+//
+//            protoMsg.setMsgId(MsgCode.CreateRole);
+//            protoMsg.setData(person1.toByteArray());
 
+            ctx.writeAndFlush("protoMsg");
 
-            protoMsg.setMsgId(MsgCode.CreateRole);
-            protoMsg.setData(person1.toByteArray());
-
-            ctx.writeAndFlush(protoMsg);
-
-            log.info("向服务器发送消息：{}",protoMsg.getData().length);
+//            log.info("向服务器发送消息：{}",protoMsg.getData().length);
             break;
         }
 

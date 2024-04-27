@@ -1,8 +1,7 @@
-package com.chen.mannger;
+package com.chen.manager;
 
 import com.chen.entity.Player;
 import io.netty.channel.ChannelHandlerContext;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

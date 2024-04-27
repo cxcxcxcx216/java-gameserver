@@ -1,4 +1,4 @@
-package com.chen.mannger;
+package com.chen.manager;
 
 import com.chen.net.Session;
 import io.netty.channel.ChannelHandlerContext;

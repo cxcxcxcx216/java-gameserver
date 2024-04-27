@@ -25,15 +25,15 @@ public class ClientHandler extends SimpleChannelInboundHandler<ProtoMsg> {
     public void channelActive(ChannelHandlerContext ctx) {
         ApplicationClient.ctx = ctx;
 
-        com.chen.proto.ProtoMsg.Person.Builder person = com.chen.proto.ProtoMsg.Person.newBuilder();
-        com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("123123").setName("chenxing").build();
-        com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
+//        com.chen.proto.ProtoMsg.Person.Builder person = com.chen.proto.ProtoMsg.Person.newBuilder();
+//        com.chen.proto.ProtoMsg.Person person1 = person.setId(101).addEmail("123123").setName("chenxing").build();
+//        com.chen.msg.ProtoMsg protoMsg = new com.chen.msg.ProtoMsg();
+//
+//
+//        protoMsg.setMsgId(MsgCode.LoginAction);
+//        protoMsg.setData(person1.toByteArray());
 
-
-        protoMsg.setMsgId(MsgCode.LoginAction);
-        protoMsg.setData(person1.toByteArray());
-
-        ctx.writeAndFlush(protoMsg);
+        ctx.writeAndFlush("hello");
     }
 
     @Override

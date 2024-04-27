@@ -1,8 +1,8 @@
 package com.chen.net.handler;
 
 import com.chen.entity.Player;
-import com.chen.mannger.PlayerManager;
-import com.chen.mannger.SessionManager;
+import com.chen.manager.PlayerManager;
+import com.chen.manager.SessionManager;
 import com.chen.net.msg.ReqProtoMsg;
 import com.chen.net.Session;
 import com.chen.processor.Router;
